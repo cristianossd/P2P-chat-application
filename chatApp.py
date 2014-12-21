@@ -34,10 +34,10 @@ class ChatClient(Frame):
     ipGroup = Frame(parentFrame)
     serverLabel = Label(ipGroup, text="Server: ")
     self.nameVar = StringVar()
-    self.nameVar.set("SDH")
+    self.nameVar.set("Home")
     nameField = Entry(ipGroup, width=10, textvariable=self.nameVar)
     self.serverIPVar = StringVar()
-    self.serverIPVar.set("127.0.0.1")
+    self.serverIPVar.set(socket.gethostbyname(socket.gethostname()))
     serverIPField = Entry(ipGroup, width=15, textvariable=self.serverIPVar)
     self.serverPortVar = StringVar()
     self.serverPortVar.set("8090")
@@ -76,7 +76,7 @@ class ChatClient(Frame):
 
     self.statusLabel = Label(parentFrame)
 
-    bottomLabel = Label(parentFrame, text="")
+    bottomLabel = Label(parentFrame, text="MAT69 - Redes de Computadores")
     
     ipGroup.grid(row=0, column=0)
     readChatGroup.grid(row=1, column=0)
@@ -101,7 +101,7 @@ class ChatClient(Frame):
         if self.name == '':
             self.name = "%s:%s" % serveraddr
     except:
-        self.setStatus("Erro ao tentar setar o server")
+        self.setStatus("Erro ao setando o server")
     
   def listenClients(self):
     while 1:
@@ -113,17 +113,17 @@ class ChatClient(Frame):
   
   def handleAddClient(self):
     if self.serverStatus == 0:
-      self.setStatus("Confirme o endereço do server primeiro")
+      self.setStatus("Informe o endereco do server primeiro")
       return
     clientaddr = (self.clientIPVar.get().replace(' ',''), int(self.clientPortVar.get().replace(' ','')))
     try:
         clientsoc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         clientsoc.connect(clientaddr)
-        self.setStatus("Conectado com o peer em %s:%s" % clientaddr)
+        self.setStatus("Conectado ao peer em %s:%s" % clientaddr)
         self.addClient(clientsoc, clientaddr)
         thread.start_new_thread(self.handleClientMessages, (clientsoc, clientaddr))
     except:
-        self.setStatus("Erro ao tentar conectar com o peer")
+        self.setStatus("Erro ao conectar ao peer")
 
   def handleClientMessages(self, clientsoc, clientaddr):
     while 1:
@@ -131,7 +131,7 @@ class ChatClient(Frame):
         data = clientsoc.recv(self.buffsize)
         if not data:
             break
-        self.addChat("Peer:%s" % data)
+        self.addChat("%s:%s" % clientaddr, data)
       except:
           break
     self.removeClient(clientsoc, clientaddr)
@@ -140,7 +140,7 @@ class ChatClient(Frame):
   
   def handleSendChat(self):
     if self.serverStatus == 0:
-      self.setStatus("Confirme o endereço do server primeiro")
+      self.setStatus("Informe o endereco do server primeiro")
       return
     msg = self.chatVar.get()
     if msg == '':
@@ -175,4 +175,4 @@ def main():
   root.mainloop()  
 
 if __name__ == '__main__':
-  main()  
+  main()
