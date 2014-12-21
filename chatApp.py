@@ -34,7 +34,7 @@ class ChatClient(Frame):
     ipGroup = Frame(parentFrame)
     serverLabel = Label(ipGroup, text="Server: ")
     self.nameVar = StringVar()
-    self.nameVar.set("Home")
+    self.nameVar.set("Server")
     nameField = Entry(ipGroup, width=10, textvariable=self.nameVar)
     self.serverIPVar = StringVar()
     self.serverIPVar.set(socket.gethostbyname(socket.gethostname()))
@@ -76,7 +76,7 @@ class ChatClient(Frame):
 
     self.statusLabel = Label(parentFrame)
 
-    bottomLabel = Label(parentFrame, text="MAT69 - Redes de Computadores")
+    bottomLabel = Label(parentFrame, text="MATA69 - Redes de Computadores")
     
     ipGroup.grid(row=0, column=0)
     readChatGroup.grid(row=1, column=0)
