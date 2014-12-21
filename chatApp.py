@@ -131,7 +131,7 @@ class ChatClient(Frame):
         data = clientsoc.recv(self.buffsize)
         if not data:
             break
-        self.addChat("%s:%s" % clientaddr, data)
+        self.addChat("Peer:%s" % data)
       except:
           break
     self.removeClient(clientsoc, clientaddr)
