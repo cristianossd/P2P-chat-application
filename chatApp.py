@@ -142,7 +142,7 @@ class ChatClient(Frame):
     if self.serverStatus == 0:
       self.setStatus("Confirme o endereço do server primeiro")
       return
-    msg = self.chatVar.get().replace(' ','')
+    msg = self.chatVar.get()
     if msg == '':
         return
     self.addChat("Eu", msg)
