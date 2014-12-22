@@ -101,7 +101,7 @@ class ChatClient(Frame):
         if self.name == '':
             self.name = "%s:%s" % serveraddr
     except:
-        self.setStatus("Erro ao setando o server")
+        self.setStatus("Erro ao setar o server")
     
   def listenClients(self):
     while 1:
