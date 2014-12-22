@@ -16,7 +16,7 @@ class ChatClient(Frame):
     self.counter = 0
   
   def initUI(self):
-    self.root.title("P2P Chat")
+    self.root.title("MATA69 - Redes de Computadores: P2P Chat")
     ScreenSizeX = self.root.winfo_screenwidth()
     ScreenSizeY = self.root.winfo_screenheight()
     self.FrameSizeX  = 800
@@ -76,7 +76,7 @@ class ChatClient(Frame):
 
     self.statusLabel = Label(parentFrame)
 
-    bottomLabel = Label(parentFrame, text="MATA69 - Redes de Computadores")
+    bottomLabel = Label(parentFrame, text=" - ")
     
     ipGroup.grid(row=0, column=0)
     readChatGroup.grid(row=1, column=0)
